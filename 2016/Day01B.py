@@ -1,29 +1,53 @@
-# Not working yet, needs to consider the locations you walk through on your way, too
+# A bit brute force, but gets the job done
 
 import sys
 
+def check_position():
+    if (x, y) in positions:
+        distance = abs(x)+abs(y)
+        print(distance)
+        sys.exit()
+ 
+    positions[(x, y)] = 1
+    
 def north(distance):
     global y
     global current
-    y += distance
+    
+    for i in range(distance):
+        y += 1
+        check_position()
+        
     current = 'N'
     
 def east(distance):
     global x
     global current
-    x += distance
+    
+    for i in range(distance):
+        x += 1
+        check_position()
+        
     current = 'E'
 
 def south(distance):
     global y
     global current
-    y -= distance
+    
+    for i in range(distance):
+        y -= 1
+        check_position()
+        
     current = 'S'
     
 def west(distance):
     global x
     global current
-    x -= distance
+    
+    for i in range(distance):
+        x -= 1
+        check_position()
+        
     current = 'W'
 
 facings = {
@@ -56,14 +80,5 @@ positions = {}
 for direction in directions:
     direction = direction.strip()
     facings[current][direction[0]](int(direction[1:]))
-    
-    print(current, direction, x, y)
-    
-    if (x, y) in positions:
-        distance = abs(x)+abs(y)
-        print(distance)
-        sys.exit()
-        
-    positions[(x, y)] = 1
     
     
