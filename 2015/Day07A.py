@@ -106,13 +106,4 @@ while len(lines) > 0:
     if len(lines) > 0:
         index %= len(lines)
         
-    count += 1
-    if count > 100000:
-        print(wires)
-        print(lines)
-        break
-    
-    #print(index)
-    #print(wires)
-
 print(wires['a'])
