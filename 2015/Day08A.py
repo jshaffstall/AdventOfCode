@@ -1,5 +1,3 @@
-# Not there yet, still needs work
-
 import sys
 code = 0
 characters = 0
