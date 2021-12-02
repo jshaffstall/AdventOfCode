@@ -71,6 +71,10 @@ def process_op(front, wire, wires):
         if first in wires:
             wires[wire] = wires[first] >> int(second)
             return True
+    else:
+        if front in wires:
+            wires[wire] = wires[front]
+            return True
         
     return False
 
@@ -84,6 +88,7 @@ for line in sys.stdin:
     
 wires = {}
 index = 0
+count = 0
 
 while len(lines) > 0:
     front, wire = lines[index].split('->')
@@ -100,9 +105,14 @@ while len(lines) > 0:
         
     if len(lines) > 0:
         index %= len(lines)
+        
+    count += 1
+    if count > 100000:
+        print(wires)
+        print(lines)
+        break
     
     #print(index)
     #print(wires)
 
 print(wires['a'])
-
