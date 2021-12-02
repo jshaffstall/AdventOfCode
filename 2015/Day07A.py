@@ -1,5 +1,3 @@
-# Not there yet, still needs work
-
 import sys
 
 def process_op(front, wire, wires):
