@@ -1,5 +1,3 @@
-# Not finished yet
-
 import sys
 from collections import Counter
 
@@ -10,9 +8,6 @@ wires = []
 
 for line in sys.stdin:
     line = line.rstrip()
-    
-    if line == '-1':
-        break
     
     x = 0
     y = 0
@@ -38,6 +33,9 @@ for line in sys.stdin:
         wire.append((x, y))
         
     wires.append(wire)
+    
+    if len(wires) == 2:
+        break
 
 wire1 = wires[0]
 wire2 = wires[1]
@@ -61,8 +59,10 @@ for i1 in range(1, len(wire1)):
         if w1horizontal:
             if between(wire1[i1-1][1], wire2[i2-1][1], wire2[i2][1]):
                 if between(wire2[i2-1][0], wire1[i1-1][0], wire1[i1][0]):
-                    intersections.append((wire1[i1-1][0], wire2[i2-1][1]))
-                    
-intersections.remove((0,0))
+                    intersections.append((wire2[i2-1][0], wire1[i1-1][1]))
+
+if (0,0) in intersections:
+    intersections.remove((0,0))
 closest = min(intersections, key=lambda r: abs(r[0])+abs(r[1]))
 print(abs(closest[0])+abs(closest[1]))
+
